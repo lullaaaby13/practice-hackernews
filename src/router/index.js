@@ -5,6 +5,7 @@ import store from '../store'
 
 import Home from '../views/Home.vue'
 import News from '../views/News.vue'
+import List from '../views/List.vue'
 
 Vue.use(Router);
 
@@ -19,9 +20,51 @@ export default new Router({
     {
       path: '/news/:page',
       name: 'news',
-      component: News,
+      component: List,
       async beforeEnter(to, from, next) {
-        await store.dispatch('GET_NEWS')
+        const { page } = to.params
+        await store.dispatch('GET_ITEMS', { type: 'news', page })
+        next()
+      },
+    },
+    {
+      path: '/newest/:page',
+      name: 'newest',
+      component: List,
+      async beforeEnter(to, from, next) {
+        const { page } = to.params
+        await store.dispatch('GET_ITEMS', { type: 'newest', page })
+        next()
+      },
+    },
+    {
+      path: '/ask/:page',
+      name: 'ask',
+      component: List,
+      async beforeEnter(to, from, next) {
+        const { page } = to.params
+        await store.dispatch('GET_ITEMS', { type: 'ask', page })
+        next()
+      },
+    },
+    {
+      path: '/show/:page',
+      name: 'show',
+      component: List,
+      async beforeEnter(to, from, next) {
+        const { page } = to.params
+        await store.dispatch('GET_ITEMS', { type: 'show', page })
+        next()
+      },
+    },
+    {
+      path: '/jobs/:page',
+      name: 'jobs',
+      component: List,
+      async beforeEnter(to, from, next) {
+        const { page } = to.params
+        await store.dispatch('GET_ITEMS', { type: 'jobs', page })
+        next()
       },
     },
     {

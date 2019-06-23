@@ -4,11 +4,11 @@
   color="success"
   dark>
     <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat :to="{ name: 'news' }">News</v-btn>
-      <v-btn flat :to="{ name: 'news' }">Newest</v-btn>
-      <v-btn flat :to="{ name: 'news' }">Ask</v-btn>
-      <v-btn flat :to="{ name: 'news' }">Show</v-btn>
-      <v-btn flat :to="{ name: 'news' }">Jobs</v-btn>
+      <v-btn flat :to="{ name: 'news',    params: { page: 1 } }">News</v-btn>
+      <v-btn flat :to="{ name: 'newest',  params: { page: 1 } }">Newest</v-btn>
+      <v-btn flat :to="{ name: 'ask',     params: { page: 1 } }">Ask</v-btn>
+      <v-btn flat :to="{ name: 'show',    params: { page: 1 } }">Show</v-btn>
+      <v-btn flat :to="{ name: 'jobs',    params: { page: 1 } }">Jobs</v-btn>
     </v-toolbar-items>
 
 

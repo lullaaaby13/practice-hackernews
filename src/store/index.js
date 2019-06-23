@@ -19,5 +19,10 @@ export default new Vuex.Store({
       console.log('GET_NEWS')
 
     },
+    async GET_ITEMS ({ commit }, { type, page }) {
+      const url = `https://api.hnpwa.com/v0/${type}/${page}.json`
+      const { data } = await axios.get(url)
+      commit('setList', data)
+    }
   },
 });
