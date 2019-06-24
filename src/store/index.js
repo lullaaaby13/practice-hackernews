@@ -13,7 +13,12 @@ export default new Vuex.Store({
   },
   mutations: {
     setList (state, data) {
-      state.list = data
+      data.forEach((item, index) => {
+        state.list.push(item)
+      })
+    },
+    addPage (state) {
+      state.page++
     },
   },
   actions: {

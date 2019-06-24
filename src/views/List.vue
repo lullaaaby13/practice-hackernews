@@ -10,7 +10,7 @@
             <v-list-tile
             v-if="item.type == 'link'"
             avatar
-            @click="gotoPage(item.url)"
+            @click="gotoURL(item.url)"
             >
             <!-- type == ask -->
             <!-- <v-list-tile
@@ -29,6 +29,10 @@
             </v-list-tile>
           </template>
           </v-list>
+          <v-btn
+          block
+          color="success"
+          @click="fetchMoreData()">More</v-btn>
   </v-content>
 </template>
 
@@ -43,20 +47,24 @@ export default {
   },
   created () {
     // 뷰가 생성되고 데이터가 이미 감시 되고 있을 때 데이터를 가져온다.
-    this.fetchData()
+    // this.fetchData()
   },
   watch: {
     // 라우트가 변경되면 메소드를 다시 호출됩니다.
-    '$route': 'fetchData'
+    '$route': 'fetchData',
   },
   methods: {
     async fetchData () {
-      const { name, params } = this.$route
-      const { dispatch } = this.$store
-      await dispatch('GET_ITEMS', { type: name, page: params.page })
+      const { dispatch, state } = this.$store
+      const { tab, page } = state
+      await dispatch('GET_ITEMS', { type: tab, page })
     },
-    gotoPage (url) {
+    gotoURL (url) {
       window.location = url
+    },
+    fetchMoreData () {
+      this.$store.commit('addPage')
+      this.fetchData()
     }
   }
 }
