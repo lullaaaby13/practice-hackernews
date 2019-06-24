@@ -18,52 +18,62 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/news/:page',
+      path: '/news',
       name: 'news',
       component: List,
       async beforeEnter(to, from, next) {
-        const { page } = to.params
-        await store.dispatch('GET_ITEMS', { type: 'news', page })
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
+        await store.dispatch('GET_ITEMS', { type: 'news', page: 1 })
         next()
       },
     },
     {
-      path: '/newest/:page',
+      path: '/newest',
       name: 'newest',
       component: List,
       async beforeEnter(to, from, next) {
-        const { page } = to.params
-        await store.dispatch('GET_ITEMS', { type: 'newest', page })
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
+        await store.dispatch('GET_ITEMS', { type: 'newest', page: 1 })
         next()
       },
     },
     {
-      path: '/ask/:page',
+      path: '/ask',
       name: 'ask',
       component: List,
       async beforeEnter(to, from, next) {
-        const { page } = to.params
-        await store.dispatch('GET_ITEMS', { type: 'ask', page })
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
+        await store.dispatch('GET_ITEMS', { type: 'ask', page: 1 })
         next()
       },
     },
     {
-      path: '/show/:page',
+      path: '/show',
       name: 'show',
       component: List,
       async beforeEnter(to, from, next) {
-        const { page } = to.params
-        await store.dispatch('GET_ITEMS', { type: 'show', page })
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
+        await store.dispatch('GET_ITEMS', { type: 'show', page: 1 })
         next()
       },
     },
     {
-      path: '/jobs/:page',
+      path: '/jobs',
       name: 'jobs',
       component: List,
       async beforeEnter(to, from, next) {
-        const { page } = to.params
-        await store.dispatch('GET_ITEMS', { type: 'jobs', page })
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
+        await store.dispatch('GET_ITEMS', { type: 'jobs', page: 1 })
         next()
       },
     },
