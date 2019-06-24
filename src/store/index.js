@@ -12,7 +12,10 @@ export default new Vuex.Store({
     page: 1,
   },
   mutations: {
-    setList (state, data) {
+    clearList (state) {
+      state.list = []
+    },
+    pushList (state, data) {
       data.forEach((item, index) => {
         state.list.push(item)
       })
@@ -20,16 +23,15 @@ export default new Vuex.Store({
     addPage (state) {
       state.page++
     },
+    setTab (state, data) {
+      state.tab = data
+    }
   },
   actions: {
-    async GET_NEWS () {
-      console.log('GET_NEWS')
-
-    },
     async GET_ITEMS ({ commit }, { type, page }) {
       const url = `https://api.hnpwa.com/v0/${type}/${page}.json`
       const { data } = await axios.get(url)
-      commit('setList', data)
+      commit('pushList', data)
     }
   },
 });

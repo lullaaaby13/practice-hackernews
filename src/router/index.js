@@ -22,6 +22,9 @@ export default new Router({
       name: 'news',
       component: List,
       async beforeEnter(to, from, next) {
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
         await store.dispatch('GET_ITEMS', { type: 'news', page: 1 })
         next()
       },
@@ -31,6 +34,9 @@ export default new Router({
       name: 'newest',
       component: List,
       async beforeEnter(to, from, next) {
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
         await store.dispatch('GET_ITEMS', { type: 'newest', page: 1 })
         next()
       },
@@ -40,6 +46,9 @@ export default new Router({
       name: 'ask',
       component: List,
       async beforeEnter(to, from, next) {
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
         await store.dispatch('GET_ITEMS', { type: 'ask', page: 1 })
         next()
       },
@@ -49,6 +58,9 @@ export default new Router({
       name: 'show',
       component: List,
       async beforeEnter(to, from, next) {
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
         await store.dispatch('GET_ITEMS', { type: 'show', page: 1 })
         next()
       },
@@ -58,6 +70,9 @@ export default new Router({
       name: 'jobs',
       component: List,
       async beforeEnter(to, from, next) {
+        const { name } = to
+        store.commit('setTab', name)
+        store.commit('clearList')
         await store.dispatch('GET_ITEMS', { type: 'jobs', page: 1 })
         next()
       },
