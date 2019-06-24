@@ -8,6 +8,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     list: [],
+    tab: 'news',
+    page: 1,
   },
   mutations: {
     setList (state, data) {
