@@ -2,6 +2,7 @@
   <v-content class="pt-0">
     <v-list two-line>
           <template v-for="(item, index) in items">
+
             <v-subheader
               v-if="item.header"
               :key="item.header"
