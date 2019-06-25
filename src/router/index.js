@@ -69,7 +69,8 @@ export default new Router({
       name: 'item',
       component: PostView,
       async beforeEnter (to, from, next) {
-        console.log('Item beforeEnter')
+        const { id } = to.params
+        await store.dispatch('GET_ITEM', { id })
         next()
       }
     },

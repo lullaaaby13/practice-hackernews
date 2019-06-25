@@ -28,7 +28,7 @@ export default new Vuex.Store({
       state.tab = data
     },
     setItem (state, data) {
-      stat.item = data
+      state.item = data
     }
   },
   actions: {
@@ -39,7 +39,7 @@ export default new Vuex.Store({
     },
     async GET_ITEM ({ commit }, { id }) {
       const url = `https://api.hnpwa.com/v0/item/${id}.json`
-      const { data } = await axios.get()
+      const { data } = await axios.get(url)
       commit('setItem', data)
     }
   },
