@@ -9,6 +9,14 @@ import List from '../views/List.vue'
 
 Vue.use(Router);
 
+async function beforeEnter (to, from, next) {
+  const { name } = to
+  store.commit('setTab', name)
+  store.commit('clearList')
+  await store.dispatch('GET_ITEMS', { type: name, page: 1 })
+  next()
+}
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -21,61 +29,31 @@ export default new Router({
       path: '/news',
       name: 'news',
       component: List,
-      async beforeEnter(to, from, next) {
-        const { name } = to
-        store.commit('setTab', name)
-        store.commit('clearList')
-        await store.dispatch('GET_ITEMS', { type: 'news', page: 1 })
-        next()
-      },
+      beforeEnter,
     },
     {
       path: '/newest',
       name: 'newest',
       component: List,
-      async beforeEnter(to, from, next) {
-        const { name } = to
-        store.commit('setTab', name)
-        store.commit('clearList')
-        await store.dispatch('GET_ITEMS', { type: 'newest', page: 1 })
-        next()
-      },
+      beforeEnter,
     },
     {
       path: '/ask',
       name: 'ask',
       component: List,
-      async beforeEnter(to, from, next) {
-        const { name } = to
-        store.commit('setTab', name)
-        store.commit('clearList')
-        await store.dispatch('GET_ITEMS', { type: 'ask', page: 1 })
-        next()
-      },
+      beforeEnter,
     },
     {
       path: '/show',
       name: 'show',
       component: List,
-      async beforeEnter(to, from, next) {
-        const { name } = to
-        store.commit('setTab', name)
-        store.commit('clearList')
-        await store.dispatch('GET_ITEMS', { type: 'show', page: 1 })
-        next()
-      },
+      beforeEnter,
     },
     {
       path: '/jobs',
       name: 'jobs',
       component: List,
-      async beforeEnter(to, from, next) {
-        const { name } = to
-        store.commit('setTab', name)
-        store.commit('clearList')
-        await store.dispatch('GET_ITEMS', { type: 'jobs', page: 1 })
-        next()
-      },
+      beforeEnter,
     },
     {
       path: '/about',
