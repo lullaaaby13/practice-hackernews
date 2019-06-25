@@ -8,6 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     list: [],
+    item: {},
     tab: 'news',
     page: 1,
   },
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     setTab (state, data) {
       state.tab = data
+    },
+    setItem (state, data) {
+      stat.item = data
     }
   },
   actions: {
@@ -32,6 +36,11 @@ export default new Vuex.Store({
       const url = `https://api.hnpwa.com/v0/${type}/${page}.json`
       const { data } = await axios.get(url)
       commit('pushList', data)
+    },
+    async GET_ITEM ({ commit }, { id }) {
+      const url = `https://api.hnpwa.com/v0/item/${id}.json`
+      const { data } = await axios.get()
+      commit('setItem', data)
     }
   },
 });

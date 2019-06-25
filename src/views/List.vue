@@ -6,35 +6,7 @@
 
             <v-divider></v-divider>
 
-            <!-- type == link -->
-            <v-list-tile
-            v-if="item.type == 'link' || item.type == 'ask'"
-            avatar
-            >
-              <v-list-tile-avatar>
-                  {{ item.points }}
-              </v-list-tile-avatar>
-
-              <v-list-tile-content>
-                <v-list-tile-title
-                v-html="item.title"
-                class="cursor--pointer"
-                @click="gotoURL(item.url)"
-                ></v-list-tile-title>
-                <v-list-tile-sub-title class="pt-1">
-                  {{ item.points }} points
-                  by
-                  <router-link
-                  class="success--text"
-                  :to="{ name: 'about' }">
-                    {{ item.user }}
-                  </router-link>
-                  has {{ item.comments_count }} comments
-                  in {{ item.time_ago }}
-                </v-list-tile-sub-title>
-              </v-list-tile-content>
-            </v-list-tile>
-
+            <!-- type == job -->
             <v-list-tile
             v-if="item.type == 'job'"
             avatar
@@ -54,6 +26,49 @@
                 </v-list-tile-sub-title>
               </v-list-tile-content>
             </v-list-tile>
+
+            <!-- type == link -->
+            <v-list-tile
+            v-else
+            avatar
+            >
+              <v-list-tile-avatar>
+                  {{ item.points }}
+              </v-list-tile-avatar>
+
+              <v-list-tile-content>
+                <template v-if="$store.state.tab == 'ask'">
+                  <router-link
+                  :to="{ name: 'item', params: { id: item.id } }"
+                  class="black--text"
+                  style="text-decoration: none;"
+                  >
+                  {{ item.title }}
+                </router-link>
+              </template>
+                <template v-else>
+                  <v-list-tile-title
+                  v-html="item.title"
+                  class="cursor--pointer"
+                  @click="gotoURL(item.url)"
+                  ></v-list-tile-title>
+                </template>
+
+                <v-list-tile-sub-title class="pt-1">
+                  {{ item.points }} points
+                  by
+                  <router-link
+                  class="success--text"
+                  :to="{ name: 'about' }">
+                    {{ item.user }}
+                  </router-link>
+                  has {{ item.comments_count }} comments
+                  in {{ item.time_ago }}
+                </v-list-tile-sub-title>
+              </v-list-tile-content>
+            </v-list-tile>
+
+
 
           </template>
           </v-list>
@@ -83,20 +98,11 @@ export default {
   },
   methods: {
     async fetchData() {
-      const {
-        dispatch,
-        state
-      } = this.$store
-      const {
-        tab,
-        page
-      } = state
-      await dispatch('GET_ITEMS', {
-        type: tab,
-        page
-      })
+      const { dispatch, state } = this.$store
+      const { tab, page } = state
+      await dispatch('GET_ITEMS', { type: tab, page })
     },
-    gotoURL(url) {
+    gotoURL(url, type) {
       window.location = url
     },
     fetchMoreData() {

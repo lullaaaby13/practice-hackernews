@@ -6,6 +6,7 @@ import store from '../store'
 import Home from '../views/Home.vue'
 import News from '../views/News.vue'
 import List from '../views/List.vue'
+import PostView from '../views/PostView.vue'
 
 Vue.use(Router);
 
@@ -62,6 +63,15 @@ export default new Router({
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
       component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),
+    },
+    {
+      path: '/item/:id',
+      name: 'item',
+      component: PostView,
+      async beforeEnter (to, from, next) {
+        console.log('Item beforeEnter')
+        next()
+      }
     },
 
   ],
