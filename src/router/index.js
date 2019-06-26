@@ -7,6 +7,7 @@ import Home from '../views/Home.vue'
 import News from '../views/News.vue'
 import List from '../views/List.vue'
 import PostView from '../views/PostView.vue'
+import User from '../views/User.vue'
 
 Vue.use(Router);
 
@@ -74,6 +75,19 @@ export default new Router({
         next()
       }
     },
-
+    {
+      path: '/user/:user',
+      name: 'user',
+      component: User,
+      beforeEnter (to, from, next) {
+        const { user } = to.params
+        store.dispatch('GET_USER', { user })
+        next()
+      },
+      beforeLeave (to, from, next) {
+        console.log('Leaving..')
+        store.commit('setUser', {})
+      }
+    },
   ],
 });
