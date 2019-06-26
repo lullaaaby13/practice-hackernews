@@ -76,12 +76,12 @@ export default new Router({
       }
     },
     {
-      path: '/user/:id',
+      path: '/user/:user',
       name: 'user',
       component: User,
       async beforeEnter (to, from, next) {
-        const { id } = to.params
-        await store.dispatch('GET_USER', { id })
+        const { user } = to.params
+        await store.dispatch('GET_USER', { user })
         next()
       }
     },

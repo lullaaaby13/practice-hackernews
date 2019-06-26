@@ -46,8 +46,8 @@ export default new Vuex.Store({
       const { data } = await axios.get(url)
       commit('setItem', data)
     },
-    async GET_USER ({ commit }, { id }) {
-      const url = `https://api.hnpwa.com/v0/user/${id}.json`
+    async GET_USER ({ commit }, { user }) {
+      const url = `https://api.hnpwa.com/v0/user/${user}.json`
       const { data } = await axios.get(url)
       commit('setUser', data)
     }
