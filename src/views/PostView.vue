@@ -8,7 +8,7 @@
     by
     <router-link
     class="success--text"
-    :to="{ name: 'about' }">
+    :to="{ name: 'user', params: { user: $store.state.item.user } }">
       {{ $store.state.item.user }}
     </router-link>
     has {{ $store.state.item.comments_count }}

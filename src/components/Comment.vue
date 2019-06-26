@@ -3,7 +3,7 @@
     <v-subheader>
       <router-link
       class="success--text mr-2"
-      :to="{ name: 'about' }">
+      :to="{ name: 'user', params: { user: comment.user } }">
         {{ comment.user }}
       </router-link>
       {{ comment.time_ago }}
