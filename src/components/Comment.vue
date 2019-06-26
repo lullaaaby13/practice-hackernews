@@ -14,7 +14,7 @@
 
     <div
     v-for="child in comment.comments"
-    style="padding-left: 30px;"
+    style="padding-left: 60px;"
     >
       <Comment
       :comment="child"
