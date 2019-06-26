@@ -79,10 +79,14 @@ export default new Router({
       path: '/user/:user',
       name: 'user',
       component: User,
-      async beforeEnter (to, from, next) {
+      beforeEnter (to, from, next) {
         const { user } = to.params
-        await store.dispatch('GET_USER', { user })
+        store.dispatch('GET_USER', { user })
         next()
+      },
+      beforeLeave (to, from, next) {
+        console.log('Leaving..')
+        store.commit('setUser', {})
       }
     },
   ],
