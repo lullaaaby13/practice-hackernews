@@ -11,6 +11,7 @@ export default new Vuex.Store({
     item: {},
     tab: 'news',
     page: 1,
+    user: {},
   },
   mutations: {
     clearList (state) {
@@ -29,6 +30,9 @@ export default new Vuex.Store({
     },
     setItem (state, data) {
       state.item = data
+    },
+    setUser (state, data) {
+      state.user = data
     }
   },
   actions: {
@@ -41,6 +45,11 @@ export default new Vuex.Store({
       const url = `https://api.hnpwa.com/v0/item/${id}.json`
       const { data } = await axios.get(url)
       commit('setItem', data)
+    },
+    async GET_USER ({ commit }, { id }) {
+      const url = `https://api.hnpwa.com/v0/user/${id}.json`
+      const { data } = await axios.get(url)
+      commit('setUser', data)
     }
   },
 });
